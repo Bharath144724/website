@@ -1,0 +1,35 @@
+name: Deploy WordPress
+
+on:
+  push:
+    branches:
+      - master # Change to your main branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH keys
+      run: |
+        ssh-keyscan -t rsa 13.126.156.134 >> ~/.ssh/known_hosts
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+
+    - name: Deploy to server
+      run: |
+        ssh ec2-user@13.126.156.134 "cd /var/www/html && git pull origin master"
+        # Add any additional deployment commands here
+
+ #   - name: Trigger Nginx reload
+    ##  run: |
+   #     ssh <your-username>@<your-server-ip> "sudo systemctl reload nginx"
+
+    # Add any other steps for database updates, cache clearing, etc.
+
+# Define your secrets in the repository's settings and reference them here
+env:
+  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
