@@ -30,12 +30,6 @@ jobs:
         ssh ec2-user@13.126.156.134 "cd /var/www/html && git pull origin master"
         # Add any additional deployment commands here
 
- #   - name: Trigger Nginx reload
-    ##  run: |
-   #     ssh <your-username>@<your-server-ip> "sudo systemctl reload nginx"
-
-    # Add any other steps for database updates, cache clearing, etc.
-
 # Define your secrets in the repository's settings and reference them here
 env:
   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
