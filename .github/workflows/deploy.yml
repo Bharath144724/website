@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up Node.js 16
-      uses: actions/setup-node@v2
-      with:
-        node-version: 16
-
     - name: Checkout code
       uses: actions/checkout@v2
 
@@ -29,6 +24,12 @@ jobs:
       run: |
         ssh ec2-user@13.126.156.134 "cd /var/www/html && git pull origin master"
         # Add any additional deployment commands here
+
+ #   - name: Trigger Nginx reload
+    ##  run: |
+   #     ssh <your-username>@<your-server-ip> "sudo systemctl reload nginx"
+
+    # Add any other steps for database updates, cache clearing, etc.
 
 # Define your secrets in the repository's settings and reference them here
 env:
