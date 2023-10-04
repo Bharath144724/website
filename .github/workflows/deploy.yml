@@ -29,7 +29,8 @@ jobs:
 
     - name: Deploy to server
       run: |
-        ssh ec2-user@13.126.156.134 "cd /var/www/html && git pull origin master"
+        ssh -vv ec2-user@13.126.156.134 "cd /var/www/html && git pull origin master"
+        
         # Add any additional deployment commands here
 
  #   - name: Trigger Nginx reload
