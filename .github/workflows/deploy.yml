@@ -19,7 +19,9 @@ jobs:
     - name: Set up SSH keys
       run: |
         mkdir ~/.ssh
+        touch ~/.ssh/known_hosts
         echo "done"
+        ssh-keyscan 13.126.156.134 >> ~/.ssh/known_hosts
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         echo "done2"
         chmod 600 ~/.ssh/id_rsa
